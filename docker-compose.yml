@@ -10,7 +10,12 @@ services:
             - ./store/static/files:/static:ro
         links:
             - gunicorn
+            - node
 
     gunicorn:
         container_name: gunicorn
         build: ./py
+
+    node:
+        container_name: node
+        build: ./js
