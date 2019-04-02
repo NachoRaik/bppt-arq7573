@@ -1,3 +1,5 @@
+########################### NODE
+
 # Logs
 logs
 *.log
@@ -59,3 +61,11 @@ typings/
 
 # next.js build output
 .next
+
+
+
+########################### PYTHON
+
+*.pyc
+py/__pycache__/*
+
