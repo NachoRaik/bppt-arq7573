@@ -1,13 +1,11 @@
-FROM node:8.6.0
+FROM node:10.10.0
 
-WORKDIR /app
-
-ADD package.json /app
+RUN mkdir /usr/js-server
+WORKDIR /usr/js-server
+COPY . /usr/js-server
 
 RUN npm install
 
-ADD . /app
-
-CMD node app.js
-
+#CMD node app.js
 EXPOSE 3000
+ENTRYPOINT [ "node", "app.js" ]
