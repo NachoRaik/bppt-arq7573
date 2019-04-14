@@ -1,4 +1,4 @@
-FROM node:10.10.0
+FROM node:8.6.0
 
 RUN mkdir /usr/js-server
 WORKDIR /usr/js-server
