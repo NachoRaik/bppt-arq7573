@@ -14,10 +14,27 @@ config:
           host: localhost
           port: 8125
           prefix: "artillery-gunicorn"
-
+    gunicorn-timeout:
+      target: 'http://localhost:5555/gunicorn/timeout'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-gunicorn-timeout"
+    gunicorn-intensive:
+      target: 'http://localhost:5555/gunicorn/intensive'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-gunicorn-intensive"
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
   phases:
+    - name: Ramp
+      duration: 60
+      arrivalRate: 5
+      rampTo: 30
     - name: Plain
       duration: 120
       arrivalRate: 30
