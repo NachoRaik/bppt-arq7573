@@ -71,7 +71,7 @@ p{
 		<img class="phasesScheme" src="js/data/Node Load Test/requestsPorSegundo.png">
 	<div>
 	<div>
-	<h2>Caso Load Test Basico</h2>
+	<h2>Caso Load Test Ping</h2>
 		<div class="caseDescriptorBox">
 		<p>
 			En el caso del Ping hay dos particularidades importantes a notar, la cantidad de requests pendientes es bastante estable a travez de los periodos de 10 segundos. El otro hecho a notar muy importante es que el tiempo de respuesta tiene una varianza muy alta con respecto a los otros dos endpoints. En cuanto al uso de la memoria y el procesador no se ve algo muy extraño, el uso de los procesadores se mantiene bastante constante a travez de toda la experiencia y la memoria tambien
@@ -128,4 +128,182 @@ p{
 		</tr>
 		</table>
 	</div>
+	<br><br><br>
+	<div style="display:block">
+		<div class="testDescriptorBox">
+		<h2 class="testName">Stress test</h2>
+			<p class="testDescriptor">
+				Para el caso del load test primero seguimos un esquema muy simple de "Phases".  Primero habria una rampa de requests subiendo de 5 a 30 en 60 segundos para simular un comienzo estable y luevo mantuvimos la cantidad de requests por segundo en 30 los siguientes dos minutos. Este esquema se repitio en todos los otros casos de load test
+			</p>
+		</div>
+		<img class="phasesScheme" src="js/data/Node Stress Test/requestsPorSegundo.png">
+	<div>
+	<div>
+	<h2>Caso Stress Test Ping</h2>
+		<div class="caseDescriptorBox">
+		<p>
+			En el caso del Ping hay dos particularidades importantes a notar, la cantidad de requests pendientes es bastante estable a travez de los periodos de 10 segundos. El otro hecho a notar muy importante es que el tiempo de respuesta tiene una varianza muy alta con respecto a los otros dos endpoints. En cuanto al uso de la memoria y el procesador no se ve algo muy extraño, el uso de los procesadores se mantiene bastante constante a travez de toda la experiencia y la memoria tambien
+		</p>
+		</div>
+		<table>
+		<tr>
+			<td><img src="js/data/Node Stress Test/responseTimeComparison.png"></td>
+			<td><img src="js/data/Node Stress Test/responseTime.png"></td>
+		</tr>
+		<tr>
+			<td><img src="js/data/Node Stress Test/pendingRequests.png"></td>
+			<td><img src="js/data/Node Stress Test/pendingRequestsCOmparison.png"></td>
+		</tr>
+		<tr>
+			<td><img src="js/data/Node Stress Test/usoDeProcesador.png"></td>
+			<td><img src="js/data/Node Stress Test/usoDeMemoria.png"></td>
+		</tr>
+		</table>
+	</div>
+	<br>
+	<br>
+	<div>
+	<h2>Caso Stress Test Timeout</h2>
+		<div class="caseDescriptorBox">
+		<p>
+			En el caso del Ping hay dos particularidades importantes a notar, la cantidad de requests pendientes es bastante estable a travez de los periodos de 10 segundos. El otro hecho a notar muy importante es que el tiempo de respuesta tiene una varianza muy alta con respecto a los otros dos endpoints. En cuanto al uso de la memoria y el procesador no se ve algo muy extraño, el uso de los procesadores se mantiene bastante constante a travez de toda la experiencia y la memoria tambien
+		</p>
+		</div>
+		<table>
+		<tr>
+			<td><img src="js/data/Node Timeout Stress Test/pendingRequests.png"></td>
+			<td><img src="js/data/Node Timeout Stress Test/responseTime.png"></td>
+		</tr>
+		<tr>
+			<td><img src="js/data/Node Timeout Stress Test/usoDeProcesador.png"></td>
+			<td><img src="js/data/Node Timeout Stress Test/usoDeMemoria.png"></td>
+		</tr>
+		<tr>
+			<td><img src="js/data/Node Timeout Stress Test/artilleryFeedback.png"></td>
+		</tr>
+		</table>
+	</div>
+	<br>
+	<br>
+	<div>
+	<h2>Caso Stress Test Intensive</h2>
+		<div class="caseDescriptorBox">
+		<p>
+			En el caso del Ping hay dos particularidades importantes a notar, la cantidad de requests pendientes es bastante estable a travez de los periodos de 10 segundos. El otro hecho a notar muy importante es que el tiempo de respuesta tiene una varianza muy alta con respecto a los otros dos endpoints. En cuanto al uso de la memoria y el procesador no se ve algo muy extraño, el uso de los procesadores se mantiene bastante constante a travez de toda la experiencia y la memoria tambien
+		</p>
+		</div>
+		<table>
+		<tr>
+			<td><img src="js/data/Node Intensive Stress Test/responseTimeComparison.png"></td>
+			<td><img src="js/data/Node Intensive Stress Test/responseTime.png"></td>
+		</tr>
+		<tr>
+			<td><img src="js/data/Node Intensive Stress Test/pendingRequests.png"></td>
+			<td><img src="js/data/Node Intensive Stress Test/usoDeMemoria.png"></td>
+		</tr>
+		<tr>
+			<td><img src="js/data/Node Intensive Stress Test/usoDeProcesador.png"></td>
+		</tr>
+		</table>
+	</div>
+	<br>
+	<br>
+	<div>
+	<h2>Caso Heavy Stress Test Ping</h2>
+		<div class="caseDescriptorBox">
+		<p>
+			En el caso del Ping hay dos particularidades importantes a notar, la cantidad de requests pendientes es bastante estable a travez de los periodos de 10 segundos. El otro hecho a notar muy importante es que el tiempo de respuesta tiene una varianza muy alta con respecto a los otros dos endpoints. En cuanto al uso de la memoria y el procesador no se ve algo muy extraño, el uso de los procesadores se mantiene bastante constante a travez de toda la experiencia y la memoria tambien
+		</p>
+		</div>
+		<table>
+		<tr>
+			<td><img src="js/data/Node Heavy Stress Test/requestsPorSegundo.png"></td>
+			<td><img src="js/data/Node Heavy Stress Test/pendingRequests.png"></td>
+		</tr>
+		<tr>
+			<td><img src="js/data/Node Heavy Stress Test/responseTime.png"></td>
+			<td><img src="js/data/Node Heavy Stress Test/artilleryFeedbackGeneral.png"></td>
+		</tr>
+		<tr>
+			<td><img src="js/data/Node Heavy Stress Test/usoDeProcesador.png"></td>
+			<td><img src="js/data/Node Heavy Stress Test/usoDeMemoria.png"></td>
+		</tr>
+		</table>
+	</div>
+	<br><br><br>
+	<div style="display:block">
+		<div class="testDescriptorBox">
+		<h2 class="testName">Spike test</h2>
+			<p class="testDescriptor">
+				Para el caso del load test primero seguimos un esquema muy simple de "Phases".  Primero habria una rampa de requests subiendo de 5 a 30 en 60 segundos para simular un comienzo estable y luevo mantuvimos la cantidad de requests por segundo en 30 los siguientes dos minutos. Este esquema se repitio en todos los otros casos de load test
+			</p>
+		</div>
+		<img class="phasesScheme" src="js/data/Node Spike Test/requestsPorSegundo.png">
+	<div>
+	<div>
+	<h2>Caso Spike Test Ping</h2>
+		<div class="caseDescriptorBox">
+		<p>
+			En el caso del Ping hay dos particularidades importantes a notar, la cantidad de requests pendientes es bastante estable a travez de los periodos de 10 segundos. El otro hecho a notar muy importante es que el tiempo de respuesta tiene una varianza muy alta con respecto a los otros dos endpoints. En cuanto al uso de la memoria y el procesador no se ve algo muy extraño, el uso de los procesadores se mantiene bastante constante a travez de toda la experiencia y la memoria tambien
+		</p>
+		</div>
+		<table>
+		<tr>
+			<td><img src="js/data/Node Spike Test/pendingRequestsComparison.png"></td>
+			<td><img src="js/data/Node Spike Test/pendingRequests.png"></td>
+		</tr>
+		<tr>
+			<td><img src="js/data/Node Spike Test/responseTime.png"></td>
+			<td><img src="js/data/Node Spike Test/usoDeMemoria.png"></td>
+		</tr>
+		<tr>
+			<td><img src="js/data/Node Spike Test/usoDeProcesador.png"></td>
+		</tr>
+		</table>
+	</div>
+	<br>
+	<br>
+	<div>
+	<h2>Caso Spike Test Timeout</h2>
+		<div class="caseDescriptorBox">
+		<p>
+			En el caso del Ping hay dos particularidades importantes a notar, la cantidad de requests pendientes es bastante estable a travez de los periodos de 10 segundos. El otro hecho a notar muy importante es que el tiempo de respuesta tiene una varianza muy alta con respecto a los otros dos endpoints. En cuanto al uso de la memoria y el procesador no se ve algo muy extraño, el uso de los procesadores se mantiene bastante constante a travez de toda la experiencia y la memoria tambien
+		</p>
+		</div>
+		<table>
+		<tr>
+			<td><img src="js/data/Node Timeout Spike Test/responseTime.png"></td>
+			<td><img src="js/data/Node Timeout Spike Test/pendingRequests.png"></td>
+		</tr>
+		<tr>
+			<td><img src="js/data/Node Timeout Spike Test/usoDeProcesador.png"></td>
+			<td><img src="js/data/Node Timeout Spike Test/usoDeMemoria.png"></td>
+		</tr>
+		</table>
+	</div>
+	<br>
+	<br>
+	<div>
+	<h2>Caso Spike Test Intensive</h2>
+		<div class="caseDescriptorBox">
+		<p>
+			En el caso del Ping hay dos particularidades importantes a notar, la cantidad de requests pendientes es bastante estable a travez de los periodos de 10 segundos. El otro hecho a notar muy importante es que el tiempo de respuesta tiene una varianza muy alta con respecto a los otros dos endpoints. En cuanto al uso de la memoria y el procesador no se ve algo muy extraño, el uso de los procesadores se mantiene bastante constante a travez de toda la experiencia y la memoria tambien
+		</p>
+		</div>
+		<table>
+		<tr>
+			<td><img src="js/data/Node Intensive Spike Test/pendingRequestsComparison.png"></td>
+			<td><img src="js/data/Node Intensive Spike Test/pendingRequests.png"></td>
+		</tr>
+		<tr>
+			<td><img src="js/data/Node Intensive Spike Test/responseTime.png"></td>
+			<td><img src="js/data/Node Intensive Spike Test/usoDeMemoria.png"></td>
+		</tr>
+		<tr>
+			<td><img src="js/data/Node Intensive Spike Test/usoDeProcesador.png"></td>
+		</tr>
+		</table>
+	</div>
+	<br>
+	<br>
 </div>
