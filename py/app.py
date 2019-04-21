@@ -19,4 +19,6 @@ def timeout():
 def intensive():
     for i in range(1000):
         number = 100*100
+#        for j in range(1000):
+#            number = 100*100
     return "OK Python intensive", status.HTTP_200_OK

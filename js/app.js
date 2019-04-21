@@ -17,8 +17,11 @@ app.get('/timeout', (req, res) => {
 });
 
 app.get('/intensive', (req, res) => {
-	for (var i = 0; i <= 1000; i++) {
+	for (var i = 0; i <= 10000; i++) {
 		100*100
+//		for (var j = 0; j <= 10000; j++) {
+//      			100*100
+//    		}
 	}
 	res.status(200)
 	res.send('Ok node intensive '+ serverNumber)

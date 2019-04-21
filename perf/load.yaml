@@ -10,14 +10,18 @@ config:
           port: 8125
           prefix: "artillery-node"
     node-timeout:
-      target: 'http://localhost:5555/node/timeout'
+      target: 'http://localhost:5555/node'
+      variables:
+        endpoint: '/timeout'
       plugins:
         statsd:
           host: localhost
           port: 8125
           prefix: "artillery-node"
     node-intensive:
-      target: 'http://localhost:5555/node/intensive'
+      target: 'http://localhost:5555/node'
+      variables:
+        endpoint: '/intensive'
       plugins:
         statsd:
           host: localhost
@@ -54,9 +58,12 @@ config:
 
   phases:
     - name: Ramp
-      duration: 20
+      duration: 60
       arrivalRate: 5
-      rampTo: 400
+      rampTo: 30
+    - name: Plain
+      duration: 120
+      arrivalRate: 30
 
 scenarios:
   - name: Root (/)
