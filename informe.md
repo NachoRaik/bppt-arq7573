@@ -7,7 +7,7 @@ Comenzaremos este informe detallando las bases del proyecto llevado a cabo. En e
 Para el caso del load test primero seguimos un esquema muy simple de "Phases". Primero habría una rampa de requests subiendo de 5 a 30 en 60 segundos para simular un comienzo estable y luego mantuvimos la cantidad de requests por segundo en 30 los siguientes dos minutos. Este esquema se repitió en todos los otros casos de load test.
 
 <div class="schemeImg">
-	<img class="phasesScheme" src="js/data/Node Load Test/requestsPorSegundo.png">
+	<img class="phasesScheme" src="py/data/Python Load Test/requestsPorSegundo.png">
 </div>
 	
 ### Node: Ping
@@ -31,7 +31,14 @@ En el caso del Ping hay dos particularidades importantes a notar, la cantidad de
 
 En este caso, se puede observar que el comportamiento es similar al obtenido con Node. Esto se debe principalmente a que se trata de un caso en el cual no hay una sobrecarga de requests y en la cual no se realizan operaciones que permitan que el asincronismo de Node marque una diferencia por sobre Python. De esta forma, el comportamiento de ambos es similar.
 
-<!-- TODO: Imagenes -->
+<div>
+	<table>
+	<tr>
+		<td><img src="py/data/Python Load Test/pendingRequests.png"></td>
+		<td><img src="py/data/Python Load Test/responseTime.png"></td>
+	</tr>
+	</table>
+</div>
 
 ### Node: Timeout
 
@@ -61,9 +68,27 @@ nginx_1     | 2019/04/20 22:40:57 [alert] 6#6: 1024 worker_connections are not e
 
 En este caso, sí se puede observar una diferencia con Node, ya que Node puede aprovechar el asincronismo, mientras que Python debe procesar los requests sincrónicamente.
 
+<div>
+	<table>
+	<tr>
+		<td><img src="py/data/Python Timeout Load Test/pendingRequestsComparisonHeavy.png"></td>
+		<td><img src="py/data/Python Timeout Load Test/responseTimeHeavy.png"></td>
+	</tr>
+	</table>
+</div>
+
+Además, se puede observar que suparados los 3 mins de duración del periodo de envío de requests se comienzan a disminuir los requests pendientes. Esto puede deberse a que queda una ventana en la cual no se reciben requests (por lo que no se acumulan pendientes) y se siguen resolviendo los pendientes.
+
 Haciendo uso de un timeout menor (de 0.1s en lugar de 5s), se puede observar que aumenta la cantidad de requests completados y disminuye la cantidad de errores, así como también se disminuye el tiempo de respuesta en general. Es claro, que a medida que se disminuye el timeout se comenzarán a completar más requests ya que se podrán ir respondiendo cada uno más rápido (acercándose cada vez más al comportamiento de Ping).
 
-<!-- TODO: Imagenes -->
+<div>
+	<table>
+	<tr>
+		<td><img src="py/data/Python Timeout Load Test/pendingRequestsComparison.png"></td>
+		<td><img src="py/data/Python Timeout Load Test/responseTime.png"></td>
+	</tr>
+	</table>
+</div>
 
 ### Node: Intensive
 
@@ -84,7 +109,16 @@ En el load test de Node intensive podemos ver que al igual que en el caso del Pi
 
 Sin embargo, si se incrementa el procesamiento realizado en el endpoint se comienza a ver un comportamiento más similar al obtenido con timeout en Python. Si bien al comienzo (durante la rampa inicial) se mantiene un tiempo de respuesta bajo y pocos requests pendientes, luego se comienzan a acumular requests pendientes (aunque no al mismo nivel que ocurría en el timeout con Python) y se observan algunos errores reportados. 
 
-<!-- TODO: Imagenes -->
+<div>
+	<table>
+	<tr>
+		<td><img src="js/data/Node Intensive Load Test/pendingRequestsComparisonHeavy.png"></td>
+		<td><img src="js/data/Node Intensive Load Test/responseTimeHeavy.png"></td>
+	</tr>
+	</table>
+</div>
+
+En este caso también se observa que luego del tiempo de emisión de requests comienzan a disminuir los requests pendientes.
 
 ### Python: Intensive
 
@@ -92,13 +126,37 @@ En el caso de Python, se observan resultados similares a los obtenidos en Node. 
 
 Para este caso, como Node no puede hacer aprovechamiento del asincronismo, no se observan diferencias cualitativas entre el comportamiento de Node y el de Python.
 
-<!-- TODO: Imagenes -->
+<div>
+	<table>
+	<tr>
+		<td><img src="py/data/Python Intensive Load Test/pendingRequests.png"></td>
+		<td><img src="py/data/Python Intensive Load Test/responseTime.png"></td>
+	</tr>
+	<tr>
+		<td><img src="py/data/Python Intensive Load Test/pendingRequestsComparison.png"></td>
+	</tr>
+	</table>
+</div>
+
+Para casos con mayor procesamiento:
+
+<div>
+	<table>
+	<tr>
+		<td><img src="py/data/Python Intensive Load Test/pendingRequestsHeavy.png"></td>
+		<td><img src="py/data/Python Intensive Load Test/responseTimeHeavy.png"></td>
+	</tr>
+	<tr>
+		<td><img src="py/data/Python Intensive Load Test/pendingRequestsComparisonHeavy.png"></td>
+	</tr>
+	</table>
+</div>
 
 ## Stress Test
 
 En estas pruebas simulamos un uso más intensivo de lo común para el servidor, para esto simulamos 80 usuarios activos por segundo, un total de 4800 requests por minuto. Mantuvimos más o menos las mismas "_Phases_" que en la prueba anterior, con la diferencia de que esta vez subimos hasta 80. Este esquema se repitió en todos los casos menos en el último, donde probamos un escenario donde quisimos poner al límite al servidor que mas capacidad deberia soportar (Ping) a ver cual era el resultado.
 
-<img class="phasesScheme" src="js/data/Node Stress Test/requestsPorSegundo.png">
+<img class="phasesScheme" src="py/data/Python Stress Test/requestsPorSegundo.png">
 
 ### Node: Ping
 
@@ -112,7 +170,7 @@ En este endpoint pudimos ver un comportamiento similar al del escenario anterior
 	</tr>
 	<tr>
 		<td><img src="js/data/Node Stress Test/pendingRequests.png"></td>
-		<td><img src="js/data/Node Stress Test/pendingRequestsCOmparison.png"></td>
+		<td><img src="js/data/Node Stress Test/pendingRequestsComparison.png"></td>
 	</tr>
 	<tr>
 		<td><img src="js/data/Node Stress Test/usoDeProcesador.png"></td>
@@ -125,7 +183,14 @@ En este endpoint pudimos ver un comportamiento similar al del escenario anterior
 
 Para este caso, ocurrió lo mismo que para Node. Se mantuvo el comportamiento que para el caso de Load Test, con valores superiores (como se esperaba).
 
-<!-- TODO: Imagenes -->
+<div>
+	<table>
+	<tr>
+		<td><img src="py/data/Python Stress Test/pendingRequestsComparison.png"></td>
+		<td><img src="py/data/Python Stress Test/responseTime.png"></td>
+	</tr>
+	</table>
+</div>
 
 ### Node: Timeout
 
@@ -151,7 +216,14 @@ Con el endpoint de timeout podemos ver también un comportamiento similar en cua
 
 Al igual que para Ping, el comportamiento es similar al obtenido para el Load test, con la diferencia esperable de que los valores son más altos de request con error y pendientes son más altos.
 
-<!-- TODO: Imagenes -->
+<div>
+	<table>
+	<tr>
+		<td><img src="py/data/Python Timeout Stress Test/pendingRequestsComparison.png"></td>
+		<td><img src="py/data/Python Timeout Stress Test/responseTime.png"></td>
+	</tr>
+	</table>
+</div>
 
 ### Node: Intensive
 
@@ -179,11 +251,31 @@ Para el Stress Test no se realizó la prueba de incrementar el procesamiento, pe
 
 Como se puede ver, en este caso los resultados fueron similares a los obtenidos en el Load Test.
 
-<!-- TODO: Imagenes -->
+<div>
+	<table>
+	<tr>
+		<td><img src="py/data/Python Intensive Stress Test/pendingRequestsComparison.png"></td>
+		<td><img src="py/data/Python Intensive Stress Test/responseTime.png"></td>
+	</tr>
+	</table>
+</div>
+
+Con mayor procesamiento:
+
+<div>
+	<table>
+	<tr>
+		<td><img src="py/data/Python Intensive Stress Test/pendingRequestsComparisonHeavy.png"></td>
+		<td><img src="py/data/Python Intensive Stress Test/responseTimeHeavy.png"></td>
+	</tr>
+	</table>
+</div>
 
 ## Heavy Stress Test
 
 Para este último caso probamos el endpoint Ping con 400 requests por segundo. 
+
+
 
 ### Node: Ping
 
@@ -210,13 +302,23 @@ Lamentablemente artillery no puedo generar tantas como quisimos, y esto lo podem
 
 Al igual que en Node se puede observar que el comportamiento fue similar al de las otras pruebas con Ping. Asimismo, también se observa la irregularidad mencionada previamente en la meseta. En cuanto al tiempo de respuesta, salvo por un pico en 4s, se mantuvo bajo.
 
-<!-- TODO: Imagenes -->
+<div>
+	<table>
+	<tr>
+		<td><img src="py/data/Python Heavy Stress Test/requestsPorSegundo.png"></td>
+		<td><img src="py/data/Python Heavy Stress Test/pendingRequestsComparison.png"></td>
+	</tr>
+	<tr>
+		<td><img src="py/data/Python Heavy Stress Test/responseTime.png"></td>
+	</tr>	
+	</table>
+</div>
 
 ## Spike Test
 
 En este último escenario decidimos probar el comportamiento del servidor cuando la cantidad de requests por segundo aumenta una forma no esperada, casi exponencial. Para esto creamos una rampa de 5 requests a 400 requests en 20 segundos, a ver cual era el comportamiento que habría en cada uno de los endpoints de los servidores.
 
-<img class="phasesScheme" src="js/data/Node Spike Test/requestsPorSegundo.png">
+<img class="phasesScheme" src="py/data/Python Spike Test/requestsPorSegundo.png">
 
 ### Node: Ping
 
@@ -242,7 +344,14 @@ Este fue uno de los escenarios mas extraño de los que probamos. Podemos ver qu
 
 En este caso, se puede observar también que el comportamiento no difiere mucho de los otros casos de Ping. 
 
-<!-- TODO: Imagenes -->
+<div>
+	<table>
+	<tr>
+		<td><img src="py/data/Python Spike Test/pendingRequestsComparison.png"></td>
+		<td><img src="py/data/Python Spike Test/responseTime.png"></td>
+	</tr>
+	</table>
+</div>
 
 ### Node: Timeout
 
@@ -265,7 +374,14 @@ Como era de esperarse al igual que en el caso del Stress Test un determinado nú
 
 Se puede observar que la curva de estado de los requests es similar a la obtenida con Node, se acumula una gran cantidad de requests pendientes, sin embargo, es importante observar que la cantidad de requests completados en promedio es mucho menor a la obtenida en Node. Este es otro claro ejemplo del manejo asincrónico de Node.
 
-<!-- TODO: Imagenes -->
+<div>
+	<table>
+	<tr>
+		<td><img src="py/data/Python Timeout Spike Test/pendingRequestsComparison.png"></td>
+		<td><img src="py/data/Python Timeout Spike Test/responseTime.png"></td>
+	</tr>
+	</table>
+</div>
 
 ### Node: Intensive
 
@@ -292,5 +408,11 @@ Por último en el caso del endpoint Intensive, tuvimos un comportamiento muy sim
 En este caso también tuvimos un comportamiento similar a los previamente observados. 
 Al aumentar el procesamiento realizado, se observa un comportamiento similar al obtenido con Timeout.
 
-<!-- TODO: Imagenes -->
-
+<div>
+	<table>
+	<tr>
+		<td><img src="py/data/Python Intensive Spike Test/pendingRequestsComparison.png"></td>
+		<td><img src="py/data/Python Intensive Spike Test/responseTime.png"></td>
+	</tr>
+	</table>
+</div>
