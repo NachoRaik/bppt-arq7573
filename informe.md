@@ -9,11 +9,11 @@ Para el caso del load test primero seguimos un esquema muy simple de "Phases". P
 <div class="schemeImg">
 	<img class="phasesScheme" src="py/data/Python Load Test/requestsPorSegundo.png">
 </div>
-	
+
 ### Node: Ping
 
-En el caso del Ping hay dos particularidades importantes a notar, la cantidad de requests pendientes es bastante estable a través de los periodos de 10 segundos. El otro hecho a notar muy importante es que el tiempo de respuesta tiene una varianza muy alta con respecto a los otros dos endpoints. En cuanto al uso de la memoria y el procesador no se ve algo muy extraño, el uso de los procesadores se mantiene bastante constante a travez de toda la experiencia y la memoria tambien.
-	
+En el caso del Ping hay dos particularidades importantes a notar, la cantidad de requests pendientes es bastante estable a través de los periodos de 10 segundos. El otro hecho a notar muy importante es que el tiempo de respuesta tiene una varianza muy alta con respecto a los otros dos endpoints. En cuanto al uso de la memoria y el procesador no se ve algo muy extraño, el uso de los procesadores se mantiene bastante constante a traves de toda la experiencia y la memoria tambien.
+
 <div>
 	<table>
 	<tr>
@@ -42,7 +42,7 @@ En este caso, se puede observar que el comportamiento es similar al obtenido con
 
 ### Node: Timeout
 
-En el load test de Node timeout esta la particularidad muy importante a notar, esta es que el response time tiene una varianza muy pequeña, casi no hay diferencia entre los tiempos medios y los mas altos. La cantidad pending requests es constante, siempre se mantiene en 300 en la fase constante. En cuanto al uso de memoria se puede ver también cómo es más gradual en este caso. Lo más curioso de este endpoint es como el timeout parece ordenar las ejecuciones del servidor manteniendo un servidor con poca variabilidad. Aunque en el caso del ping la variabilidad no era extremadamente alta, quizás para un servicio que necesite respuestas en tiempo constante esta información es muy útil. Este comportamiento se puede justificar debido manejo asincrónico de I/O que hace Node.
+En el load test de Node timeout esta la particularidad muy importante a notar, esta es que el response time tiene una varianza muy pequeña, casi no hay diferencia entre los tiempos medios y los mas altos. La cantidad de pending requests es constante, siempre se mantiene en 300 en la fase constante. En cuanto al uso de memoria se puede ver también cómo es más gradual en este caso. Lo más curioso de este endpoint es como el timeout parece ordenar las ejecuciones del servidor manteniendo un servidor con poca variabilidad. Aunque en el caso del ping la variabilidad no era extremadamente alta, quizás para un servicio que necesite respuestas en tiempo constante esta información es muy útil. Este comportamiento se puede justificar debido manejo asincrónico de I/O que hace Node.
 
 <div>
 	<table>
@@ -59,7 +59,7 @@ En el load test de Node timeout esta la particularidad muy importante a notar, e
 
 ### Python: Timeout
 
-En este caso, se puede observar que a medida que va recibiendo requests estos se van acumulando en pendientes, ya que debe realizar el timeout. Al mismo tiempo se produce un incremento en el tiempo de respuesta, así como también en algunos errores (principalmente debido a que no puedo procesar todos los requests). En la terminal se pueden observar logs de nginx como el siguiente:
+En este caso, se puede observar que a medida que va recibiendo requests estos se van acumulando en pendientes, ya que debe realizar el timeout. Al mismo tiempo se produce un incremento en el tiempo de respuesta, así como también algunos errores (principalmente debido a que no puedo procesar todos los requests). En la terminal se pueden observar logs de nginx como el siguiente:
 
 ```
 nginx_1     | 172.18.0.1 - - [20/Apr/2019:22:40:57 +0000] "GET /gunicorn/timeout HTTP/1.1" 504 167 "-" "Artillery (https://artillery.io)" "-"
@@ -77,7 +77,7 @@ En este caso, sí se puede observar una diferencia con Node, ya que Node puede a
 	</table>
 </div>
 
-Además, se puede observar que suparados los 3 mins de duración del periodo de envío de requests se comienzan a disminuir los requests pendientes. Esto puede deberse a que queda una ventana en la cual no se reciben requests (por lo que no se acumulan pendientes) y se siguen resolviendo los pendientes.
+Además, se puede observar que superados los 3 minutos de duración del periodo de envío de requests se comienzan a disminuir los requests pendientes. Esto puede deberse a que queda una ventana en la cual no se reciben requests (por lo que no se acumulan pendientes) y se siguen resolviendo los pendientes.
 
 Haciendo uso de un timeout menor (de 0.1s en lugar de 5s), se puede observar que aumenta la cantidad de requests completados y disminuye la cantidad de errores, así como también se disminuye el tiempo de respuesta en general. Es claro, que a medida que se disminuye el timeout se comenzarán a completar más requests ya que se podrán ir respondiendo cada uno más rápido (acercándose cada vez más al comportamiento de Ping).
 
@@ -92,7 +92,7 @@ Haciendo uso de un timeout menor (de 0.1s en lugar de 5s), se puede observar que
 
 ### Node: Intensive
 
-En el load test de Node intensive podemos ver que al igual que en el caso del Ping la cantidad de requests que están pendientes siempre se mantiene bastante bajo, y en cuanto al response time podemos ver también una varianza mucho menor, aunque haya ocasionalmente algunos disparos hacia arriba por lo general se mantienen bastante juntas las dos curvas. 
+En el load test de Node intensive podemos ver que al igual que en el caso del Ping la cantidad de requests que están pendientes siempre se mantiene bastante bajo, y en cuanto al response time podemos ver también una varianza mucho menor, aunque haya ocasionalmente algunos disparos hacia arriba por lo general se mantienen bastante juntas las dos curvas.
 
 <div>
 	<table>
@@ -107,7 +107,7 @@ En el load test de Node intensive podemos ver que al igual que en el caso del Pi
 	</table>
 </div>
 
-Sin embargo, si se incrementa el procesamiento realizado en el endpoint se comienza a ver un comportamiento más similar al obtenido con timeout en Python. Si bien al comienzo (durante la rampa inicial) se mantiene un tiempo de respuesta bajo y pocos requests pendientes, luego se comienzan a acumular requests pendientes (aunque no al mismo nivel que ocurría en el timeout con Python) y se observan algunos errores reportados. 
+Sin embargo, si se incrementa el procesamiento realizado en el endpoint se comienza a ver un comportamiento más similar al obtenido con timeout en Python. Si bien al comienzo (durante la rampa inicial) se mantiene un tiempo de respuesta bajo y pocos requests pendientes, luego se comienzan a acumular requests pendientes (aunque no al mismo nivel que ocurría en el timeout con Python) y se observan algunos errores reportados.
 
 <div>
 	<table>
@@ -227,7 +227,7 @@ Al igual que para Ping, el comportamiento es similar al obtenido para el Load te
 
 ### Node: Intensive
 
-Para este endpoint podemos ver que el patrón de comportamiento cambió bastante, no mantuvo una varianza baja, como en el caso del Load Test. Podemos ver igualmente que los valores no crecieron mucho, sino que crecieron como mucho un 50%, en cuanto al resto de las mediciones no hay nada muy importante a notar. 
+Para este endpoint podemos ver que el patrón de comportamiento cambió bastante, no mantuvo una varianza baja, como en el caso del Load Test. Podemos ver igualmente que los valores no crecieron mucho, sino que crecieron como mucho un 50%, en cuanto al resto de las mediciones no hay nada muy importante a notar.
 
 Para el Stress Test no se realizó la prueba de incrementar el procesamiento, pero se esperaría que nuevamente se produzca una aumento de los requests pendientes y que se produzcan algunos errores.
 
@@ -273,13 +273,13 @@ Con mayor procesamiento:
 
 ## Heavy Stress Test
 
-Para este último caso probamos el endpoint Ping con 400 requests por segundo. 
+Para este último caso probamos el endpoint Ping con 400 requests por segundo.
 
 
 
 ### Node: Ping
 
-Lamentablemente artillery no puedo generar tantas como quisimos, y esto lo podemos ver primero por la irregularidad de lo que debería ser la meseta de request en la imagen de "Scenarios Launched", en su punto más alto variaba desde 1200 requests cada 10 segundos y 1800. El escenario terminó durando 8 minutos (5 más de lo esperado). En cuanto al tiempo de respuesta podemos ver un comportamiento similar a todos los que probamos el endpoint Ping, hay una varianza muy alta en los tiempos de respuesta. 
+Lamentablemente artillery no puedo generar tantas como quisimos, y esto lo podemos ver primero por la irregularidad de lo que debería ser la meseta de request en la imagen de "Scenarios Launched", en su punto más alto variaba desde 1200 requests cada 10 segundos y 1800. El escenario terminó durando 8 minutos (5 más de lo esperado). En cuanto al tiempo de respuesta podemos ver un comportamiento similar a todos los que probamos el endpoint Ping, hay una varianza muy alta en los tiempos de respuesta.
 
 <div>
 	<table>
@@ -310,7 +310,7 @@ Al igual que en Node se puede observar que el comportamiento fue similar al de l
 	</tr>
 	<tr>
 		<td><img src="py/data/Python Heavy Stress Test/responseTime.png"></td>
-	</tr>	
+	</tr>
 	</table>
 </div>
 
@@ -342,7 +342,7 @@ Este fue uno de los escenarios mas extraño de los que probamos. Podemos ver qu
 
 ### Python: Ping
 
-En este caso, se puede observar también que el comportamiento no difiere mucho de los otros casos de Ping. 
+En este caso, se puede observar también que el comportamiento no difiere mucho de los otros casos de Ping.
 
 <div>
 	<table>
@@ -385,7 +385,7 @@ Se puede observar que la curva de estado de los requests es similar a la obtenid
 
 ### Node: Intensive
 
-Por último en el caso del endpoint Intensive, tuvimos un comportamiento muy similar al del endpoint Ping el resto de los parámetros arrojaron resultados bastante similares. 
+Por último en el caso del endpoint Intensive, tuvimos un comportamiento muy similar al del endpoint Ping el resto de los parámetros arrojaron resultados bastante similares.
 
 <div>
 	<table>
@@ -405,7 +405,7 @@ Por último en el caso del endpoint Intensive, tuvimos un comportamiento muy sim
 
 ### Python: Intensive
 
-En este caso también tuvimos un comportamiento similar a los previamente observados. 
+En este caso también tuvimos un comportamiento similar a los previamente observados.
 Al aumentar el procesamiento realizado, se observa un comportamiento similar al obtenido con Timeout.
 
 <div>

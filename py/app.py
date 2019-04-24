@@ -1,12 +1,14 @@
 from flask import Flask
 from flask_api import status
 from time import sleep
+import random
 
 application = Flask(__name__)
+num = random.random()
 
 @application.route("/")
 def ping():
-    return "OK Python", status.HTTP_200_OK
+    return "OK Python " + str(num), status.HTTP_200_OK
 
 
 @application.route("/timeout")
