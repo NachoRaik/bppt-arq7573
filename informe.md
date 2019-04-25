@@ -554,6 +554,8 @@ Al igual que para el Load Test, la mejora es notable. En este caso sin embargo, 
 
 ## Conclusiones
 
+A modo de conclusión, se puede observar claramente que bajo el caso de timeout Node funciona mejor que Python, debido a que se puede aprovechar el procesamiento asincrónico. Este escenario representa casos en los que el servidor realiza llamadas a otros servicios casi sin procesamiento de datos. Por el contrario, en caso de un endpoint en el cual se deba realizar un procesamiento intensivo, tanto Python como Node se desempeñan de forma similar, ya que ambos se “bloquean” mientras realizan el procesamiento de un request. Este escenario puede asociarse a casos en los cuales se realiza un procesamiento pesado de datos. 
+Al detectar estos escenarios, una buena forma de escalar es replicando las instancias. De esta forma, los requests recibidos se pueden distribuir entre las distintas instancias y se puede reducir así la cantidad de requests que no se alcanzan a procesar.
 
 ## Analisis a futuro
 
