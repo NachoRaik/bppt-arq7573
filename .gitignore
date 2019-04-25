@@ -68,4 +68,4 @@ typings/
 
 *.pyc
 py/__pycache__/*
-
+.DS_Store

@@ -13,7 +13,7 @@ def ping():
 
 @application.route("/timeout")
 def timeout():
-    sleep(0.5)
+    sleep(0.1)
     return "OK Python Timeout", status.HTTP_200_OK
 
 

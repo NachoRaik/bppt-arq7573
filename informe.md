@@ -429,14 +429,19 @@ En esta ocasión, se analizó con 5 instancias de servidor levantadas.
 
 #### Python: Timeout
 
-Con el endpoint de timeout ocurre algo extraño: la cantidad de errores y el promedio de requests pendientes es mayor en esta versión escalada que en la simple. Se desconoce la causa de por qué esto ocurre, pero pensamos que el causante puede ser el mismo nginx y como maneja el balance de carga en el caso del timeout. \
-Por otro lado, el promedio de tiempo de respuesta es similar al del caso single instance, pero se observa una varianza mucho menor. Una vez que se estabiliza luego de la rampa, el response time se mantiene constante, alrededor de los 50s, para todos los requests siguientes.
+Escalando con multiples servidores, podemos observar una notable mejora sobre el endpoint `/timeout` con respecto a la version uni-servidor, tanto en response time como en cantidad de fallas y valores de requests pendientes (casi no habiendo, a lo largo del proceso).
 
 <div>
 	<table>
 	<tr>
-		<td><img src="py/data/Python Scaled Timeout Load Test/pendingRequests-05.png"></td>
-		<td><img src="py/data/Python Scaled Timeout Load Test/responseTime-05.png"></td>
+		<td>Multiple instances</td>
+		<td><img src="py/data/Python Scaled Timeout Load Test/pendingRequests-01.png"></td>
+		<td><img src="py/data/Python Scaled Timeout Load Test/responseTime-01.png"></td>
+	</tr>
+	<tr>
+		<td>Single instance</td>
+		<td><img src="py/data/Python Timeout Load Test/pendingRequestsComparison.png"></td>
+		<td><img src="py/data/Python Timeout Load Test/responseTime.png"></td>
 	</tr>
 	</table>
 </div>
@@ -446,13 +451,19 @@ Por otro lado, el promedio de tiempo de respuesta es similar al del caso single 
 
 En este escenario se puede apreciar algunos de los beneficios de contar con múltiples réplicas de un mismo servicio. Vemos como en general se obtuvo un promedio menor de requests pendientes (ya que hay mas servidores para atender esos requests) y, si bien la media de tiempo de respuesta fue similar a la versión de única instancia, se puede observar que hay una varianza menor y también que no hay picos repentinos de response time en ningún momento.
 
-Para ver de manera mas clara el efecto de la duplicidad de servidores, se trabajó directamente con el procesamiento más _pesado_ de los que se mencionó en el caso de single instance.
+Para ver de manera mas clara el efecto de la multiplicidad de servidores, se trabajó directamente con el procesamiento más _pesado_ de los que se mencionó en el caso de single instance.
 
 <div>
 	<table>
 	<tr>
+		<td>Multiple instances</td>
 		<td><img src="js/data/Node Scaled Intensive Load Test/pendingRequests-heavy.png"></td>
 		<td><img src="js/data/Node Scaled Intensive Load Test/responseTime-heavy.png"></td>
+	</tr>
+	<tr>
+		<td>Single instance</td>
+		<td><img src="js/data/Node Intensive Load Test/pendingRequestsComparisonHeavy.png"></td>
+		<td><img src="js/data/Node Intensive Load Test/responseTimeHeavy.png"></td>
 	</tr>
 	</table>
 </div>
