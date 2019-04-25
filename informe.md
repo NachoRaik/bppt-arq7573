@@ -429,7 +429,8 @@ En esta ocasión, se analizó con 5 instancias de servidor levantadas.
 
 #### Python: Timeout
 
-Escalando con multiples servidores, podemos observar una notable mejora sobre el endpoint `/timeout` con respecto a la version uni-servidor, tanto en response time como en cantidad de fallas y valores de requests pendientes (casi no habiendo, a lo largo del proceso).
+Escalando con multiples servidores, podemos observar una notable mejora sobre el endpoint `/timeout` con respecto a la version uni-servidor, tanto en response time como en cantidad de fallas y valores de requests pendientes (casi no habiendo, a lo largo del proceso).\
+El timeout usado fue de 0.1 segundos.
 
 <div>
 	<table>
@@ -491,24 +492,28 @@ Al igual que el caso con Node, se puede ver claramente como ayuda a la eficienci
 
 #### Node: Timeout
 
+En este caso, aun con las multiples instancias, ocurren bastantes errores y el response time es bastante alto. Se tomó un timeout mayor que en el load test (0.5 segundos en este caso).
+
 <div>
 	<table>
 	<tr>
 		<td>Multiple instances</td>
-		<td><img src="js/data/Node Scaled Timeout Load Test/pendingRequests-heavy.png"></td>
-		<td><img src="js/data/Node Scaled Timeout Load Test/responseTime-heavy.png"></td>
+		<td><img src="js/data/Node Scaled Timeout Load Test/pendingRequests-05.png"></td>
+		<td><img src="js/data/Node Scaled Timeout Load Test/responseTime-05.png"></td>
 	</tr>
 	</table>
 </div>
 
 #### Python: Timeout
 
+Al igual que para el de Node, por el volumen de requests, aun asi se ve bastante degradado el sistema para con este endpoint.
+
 <div>
 	<table>
 	<tr>
 		<td>Multiple instances</td>
-		<td><img src="py/data/Python Scaled Timeout Stress Test/pendingRequests-heavy.png"></td>
-		<td><img src="py/data/Python Scaled Timeout Stress Test/responseTime-heavy.png"></td>
+		<td><img src="py/data/Python Scaled Timeout Stress Test/pendingRequests-05.png"></td>
+		<td><img src="py/data/Python Scaled Timeout Stress Test/responseTime-05.png"></td>
 	</tr>
 	</table>
 </div>
