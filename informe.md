@@ -435,8 +435,8 @@ Por otro lado, el promedio de tiempo de respuesta es similar al del caso single 
 <div>
 	<table>
 	<tr>
-		<td><img src="py/data/Python Scaled Intensive Load Test/pendingRequests-05.png"></td>
-		<td><img src="py/data/Python Scaled Intensive Load Test/responseTime-05.png"></td>
+		<td><img src="py/data/Python Scaled Timeout Load Test/pendingRequests-05.png"></td>
+		<td><img src="py/data/Python Scaled Timeout Load Test/responseTime-05.png"></td>
 	</tr>
 	</table>
 </div>
