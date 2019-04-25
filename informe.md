@@ -464,10 +464,12 @@ Al igual que el caso con Node, se puede ver claramente como ayuda a la eficienci
 <div>
 	<table>
 	<tr>
+		<td>Multiple instances</td>
 		<td><img src="py/data/Python Scaled Intensive Load Test/pendingRequests-heavy.png"></td>
 		<td><img src="py/data/Python Scaled Intensive Load Test/responseTime-heavy.png"></td>
 	</tr>
 	<tr>
+		<td>Single instance</td>
 		<td><img src="py/data/Python Intensive Load Test/pendingRequestsComparisonHeavy.png"></td>
 		<td><img src="py/data/Python Intensive Load Test/responseTimeHeavy.png"></td>
 	</tr>
