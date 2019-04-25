@@ -491,8 +491,66 @@ Al igual que el caso con Node, se puede ver claramente como ayuda a la eficienci
 
 #### Node: Timeout
 
+<div>
+	<table>
+	<tr>
+		<td>Multiple instances</td>
+		<td><img src="js/data/Node Scaled Timeout Load Test/pendingRequests-heavy.png"></td>
+		<td><img src="js/data/Node Scaled Timeout Load Test/responseTime-heavy.png"></td>
+	</tr>
+	</table>
+</div>
+
 #### Python: Timeout
+
+<div>
+	<table>
+	<tr>
+		<td>Multiple instances</td>
+		<td><img src="py/data/Python Scaled Timeout Stress Test/pendingRequests-heavy.png"></td>
+		<td><img src="py/data/Python Scaled Timeout Stress Test/responseTime-heavy.png"></td>
+	</tr>
+	</table>
+</div>
 
 #### Node: Intensive
 
+Para el caso de Node con procesamiento intensivo, probamos directamente con el procesamiento _pesado_ que en el caso de una unica instancia causaba una gran degradacion. Con replicas podemos observar igualmente que se produce una degradacion bastante importante.
+
+<div>
+	<table>
+	<tr>
+		<td><img src="js/data/Node Scaled Intensive Stress Test/pendingRequests-heavy.png"></td>
+		<td><img src="js/data/Node Scaled Intensive Stress Test/responseTime-heavy.png"></td>
+	</tr>
+	</table>
+</div>
+
+
 #### Python: Intensive
+
+Al igual que para el Load Test, la mejora es notable. En este caso sin embargo, si bien al comienzo se mantiene que la cantidad de requests pendientes es nula, a partir de cierto volumen, ya comienzan a acumularse y no pueden procesarse a la par del envio.
+
+<div>
+	<table>
+	<tr>
+		<td>Multiple instances</td>
+		<td><img src="py/data/Python Scaled Intensive Stress Test/pendingRequests-heavy.png"></td>
+		<td><img src="py/data/Python Scaled Intensive Stress Test/responseTime-heavy.png"></td>
+	</tr>
+	<tr>
+		<td>Single instance</td>
+		<td><img src="py/data/Python Intensive Stress Test/pendingRequestsComparisonHeavy.png"></td>
+		<td><img src="py/data/Python Intensive Stress Test/responseTimeHeavy.png"></td>
+	</tr>
+	</table>
+</div>
+
+
+## Conclusiones
+
+
+## Analisis a futuro
+
+Seria interesante poder hacer un analisis para el caso de un procesamiento intensivo, en que se empleen estrategias de caché (cache distribuido, en el caso de múltiples instancias).\
+Otro análisis interesante seria en el caso de los multi-servidores donde, con una cierta probabilidad, se caen algunos de ellos, y ver como se reacciona el sistema ante esa situación.
